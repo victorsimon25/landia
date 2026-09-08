@@ -117,3 +117,7 @@ def get_current_user(
             status_code=401,
             detail="Invalid or expired token"
         )
+
+@router.get("/me")
+def me(authorization: str = Header(None)):
+    return get_current_user(authorization)
