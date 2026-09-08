@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .progress-bar {
+    @apply h-2 rounded-full overflow-hidden bg-slate-100;
+  }
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+}

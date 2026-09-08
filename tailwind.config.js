@@ -1,0 +1,50 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:  '#edf1f6',
+          100: '#ccd7e4',
+          200: '#9ab0c9',
+          300: '#678aae',
+          400: '#3d6390',
+          500: '#294f74',
+          600: '#203145',
+          700: '#182638',
+          800: '#101b2b',
+          900: '#080e1a',
+        },
+      },
+      fontFamily: {
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
+    },
+  },
+  safelist: [
+    'bg-primary-50',
+    'bg-primary-100',
+    'bg-primary-600',
+    'bg-primary-700',
+    'bg-primary-800',
+    'hover:bg-primary-50',
+    'hover:bg-primary-100',
+    'hover:bg-primary-600',
+    'hover:bg-primary-700',
+    'hover:bg-primary-800',
+    'active:bg-primary-600',
+    'active:bg-primary-700',
+    'active:bg-primary-800',
+    'text-primary-600',
+    'text-primary-700',
+    'hover:text-primary-600',
+    'hover:text-primary-700',
+    'border-primary-100',
+    'border-primary-600',
+    'ring-primary-600',
+    'focus:ring-primary-600',
+    'focus-visible:ring-primary-600',
+  ],
+  plugins: [],
+}
