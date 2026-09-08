@@ -20,11 +20,11 @@ export default function ProjectCard({ project, isExpanded, onToggle }) {
   const typeBadge = TYPE_COLORS[project.type] || 'bg-slate-100 text-slate-600'
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="bg-white/60 backdrop-blur-md rounded-xl border border-white/50 shadow-lg overflow-hidden transition-[border-color,box-shadow,transform] duration-200 hover:bg-white/75 hover:ring-2 hover:ring-brand hover:shadow-xl hover:-translate-y-0.5">
       {/* Card header — always visible */}
       <button
         onClick={onToggle}
-        className="w-full text-left px-5 py-4 flex items-start gap-3 hover:bg-slate-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
+        className="w-full text-left px-5 py-4 flex items-start gap-3 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset"
         aria-expanded={isExpanded}
       >
         {/* Expand arrow */}
@@ -46,8 +46,8 @@ export default function ProjectCard({ project, isExpanded, onToggle }) {
             <span
               className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium flex-shrink-0 ${
                 isCompleted
-                  ? 'bg-green-50 text-green-700 border border-green-100'
-                  : 'bg-blue-50 text-primary-700 border border-blue-100'
+                  ? 'bg-emerald-500/10 text-emerald-700 border border-emerald-400/25'
+                  : 'bg-brand/10 text-brand border border-brand/20'
               }`}
             >
               {isCompleted ? 'Completed' : 'In Progress'}
@@ -56,7 +56,7 @@ export default function ProjectCard({ project, isExpanded, onToggle }) {
 
           {/* Progress bar */}
           <div className="flex items-center gap-3 mb-2.5">
-            <div className="flex-1 h-1.5 rounded-full bg-slate-100 overflow-hidden">
+            <div className="flex-1 h-1.5 rounded-full bg-white/40 overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${progressColor}`}
                 style={{ width: `${project.overallProgressPercent}%` }}

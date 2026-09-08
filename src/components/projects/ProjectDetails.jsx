@@ -2,7 +2,7 @@ import { Check, AlertTriangle, Calendar, Ruler, Activity, Users } from 'lucide-r
 
 function SectionTitle({ children }) {
   return (
-    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.12em] mb-3">
       {children}
     </h4>
   )
@@ -10,7 +10,7 @@ function SectionTitle({ children }) {
 
 function MiniProgressBar({ percent, color = 'bg-blue-500' }) {
   return (
-    <div className="h-1.5 rounded-full overflow-hidden bg-slate-100 flex-1">
+    <div className="h-1.5 rounded-full overflow-hidden bg-white/40 flex-1">
       <div
         className={`h-full rounded-full transition-all duration-500 ${color}`}
         style={{ width: `${Math.min(100, percent)}%` }}
@@ -30,28 +30,28 @@ function OverviewSection({ project }) {
     <div>
       <SectionTitle>Project Overview</SectionTitle>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-3">
-        <div className="bg-slate-50 rounded-lg p-3">
+        <div className="bg-white/50 rounded-xl border border-white/40 p-3">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
             <Activity className="w-3.5 h-3.5" />
             Type
           </div>
           <div className="text-sm font-semibold text-slate-800">{project.type}</div>
         </div>
-        <div className="bg-slate-50 rounded-lg p-3">
+        <div className="bg-white/50 rounded-xl border border-white/40 p-3">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
             <Ruler className="w-3.5 h-3.5" />
             Route Length
           </div>
           <div className="text-sm font-semibold text-slate-800">{project.routeLengthKm} km</div>
         </div>
-        <div className="bg-slate-50 rounded-lg p-3">
+        <div className="bg-white/50 rounded-xl border border-white/40 p-3">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
             <Calendar className="w-3.5 h-3.5" />
             Started
           </div>
           <div className="text-sm font-semibold text-slate-800">{fmt(project.startDate)}</div>
         </div>
-        <div className="bg-slate-50 rounded-lg p-3">
+        <div className="bg-white/50 rounded-xl border border-white/40 p-3">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
             <Calendar className="w-3.5 h-3.5" />
             Target Completion
@@ -205,7 +205,7 @@ function RRSection({ rr }) {
   return (
     <div>
       <SectionTitle>Rehabilitation &amp; Resettlement</SectionTitle>
-      <div className="flex items-center gap-3 mb-4 p-3 bg-slate-50 rounded-lg">
+      <div className="flex items-center gap-3 mb-4 p-3 bg-white/50 rounded-xl border border-white/40">
         <Users className="w-4 h-4 text-slate-500 flex-shrink-0" />
         <div className="flex-1 min-w-0">
           <div className="flex justify-between text-xs mb-1.5">
@@ -264,7 +264,7 @@ function TimelineSection({ timeline }) {
               <span className="text-xs text-slate-600 font-medium truncate">{item.stage}</span>
             </div>
             <div className="flex-1 flex items-center gap-3 min-w-0">
-              <div className="h-2 rounded-full overflow-hidden bg-slate-100 flex-1">
+              <div className="h-2 rounded-full overflow-hidden bg-white/40 flex-1">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${colorMap[item.status] || 'bg-slate-200'}`}
                   style={{ width: `${Math.min(100, item.percent)}%` }}
@@ -284,7 +284,7 @@ function TimelineSection({ timeline }) {
 function AlertsSection({ alerts }) {
   if (!alerts || alerts.length === 0) return null
 
-  const bgMap = { high: 'bg-red-50 border-red-100', medium: 'bg-amber-50 border-amber-100' }
+  const bgMap = { high: 'bg-red-500/10 border-red-400/25', medium: 'bg-amber-500/10 border-amber-400/25' }
   const iconMap = { high: 'text-red-500', medium: 'text-amber-500' }
   const textMap = { high: 'text-red-700', medium: 'text-amber-700' }
 
@@ -312,7 +312,7 @@ function AlertsSection({ alerts }) {
 
 export default function ProjectDetails({ project }) {
   return (
-    <div className="px-5 pb-6 pt-2 border-t border-slate-100">
+    <div className="px-5 pb-6 pt-2 border-t border-white/30">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
         <div className="space-y-8">
           <OverviewSection project={project} />

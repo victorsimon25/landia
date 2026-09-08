@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply text-slate-900 antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:
+      radial-gradient(ellipse at 15% 55%, rgba(4, 193, 189, 0.14) 0%, transparent 52%),
+      radial-gradient(ellipse at 85% 10%, rgba(3, 105, 161, 0.11) 0%, transparent 52%),
+      radial-gradient(ellipse at 60% 92%, rgba(99, 102, 241, 0.08) 0%, transparent 52%),
+      linear-gradient(150deg, #e0f2fe 0%, #f0fdf4 50%, #ccfbf1 100%);
+    min-height: 100vh;
   }
   * {
     @apply box-border;
@@ -13,9 +22,32 @@
 
 @layer components {
   .progress-bar {
-    @apply h-2 rounded-full overflow-hidden bg-slate-100;
+    @apply h-2 rounded-full overflow-hidden bg-white/40;
   }
   .progress-fill {
-    @apply h-full rounded-full transition-all duration-500;
+    @apply h-full rounded-full transition-all duration-700;
+  }
+  .glass-surface {
+    @apply bg-white/65 backdrop-blur-xl border border-white/60;
+  }
+  .card-enter {
+    animation: cardEnter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-enter {
+    animation: none !important;
   }
 }

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, FolderOpen, Map, LogOut, LogIn } from 'lucide-react'
+import { LayoutDashboard, FolderOpen, Map, LogOut, LogIn, Sparkles, Lock, X } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth.js'
 
 const NAV_ITEMS = [
-  { to: '/', label: 'National Land Acquisition', icon: LayoutDashboard, end: true },
+  { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
   { to: '/projects', label: 'Projects', icon: FolderOpen, requiresAuth: true },
   { to: '/map', label: 'State Map', icon: Map, requiresAuth: true },
 ]
@@ -13,6 +13,7 @@ export default function Sidebar() {
   const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
   const [expanded, setExpanded] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
 
   async function handleLogout() {
     await logout()
@@ -22,17 +23,18 @@ export default function Sidebar() {
   function handleNavClick(e, item) {
     if (item.requiresAuth && !isAuthenticated) {
       e.preventDefault()
-      navigate('/login', { state: { signinMessage: 'Sign in to continue' } })
+      setShowAuthModal(true)
     }
   }
 
   return (
+    <>
     <div className="w-14 flex-shrink-0 relative">
       <aside
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}
-        className={`absolute top-0 left-0 h-full bg-white border-r border-slate-200 flex flex-col py-4 overflow-hidden transition-all duration-200 z-30 ${
-          expanded ? 'w-56 px-2 shadow-lg' : 'w-14 px-2'
+        className={`absolute top-0 left-0 h-full bg-white/75 backdrop-blur-xl border-r border-white/60 flex flex-col py-4 overflow-hidden transition-all duration-200 z-30 ${
+          expanded ? 'w-56 px-2 shadow-xl' : 'w-14 px-2'
         }`}
       >
         {/* Nav items */}
@@ -46,12 +48,12 @@ export default function Sidebar() {
                 end={item.end}
                 onClick={(e) => handleNavClick(e, item)}
                 className={({ isActive }) =>
-                  `flex items-center py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  `w-full flex items-center py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     expanded ? 'gap-3 px-3' : 'justify-center px-2'
                   } ${
                     isActive && isAuthenticated
-                      ? 'bg-slate-100 text-primary-600'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      ? 'bg-brand/10 text-brand font-semibold'
+                      : 'text-slate-600 hover:bg-white/50 hover:text-slate-900'
                   }`
                 }
               >
@@ -62,8 +64,30 @@ export default function Sidebar() {
           })}
         </nav>
 
+        {/* Divider + Lanzer AI — only when authenticated */}
+        {isAuthenticated && (
+          <>
+            <div className={`my-3 border-t border-slate-200/80 ${expanded ? 'mx-2' : 'mx-3'}`} />
+            <NavLink
+              to="/lanzer"
+              className={({ isActive }) =>
+                `w-full flex items-center py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  expanded ? 'gap-3 px-3' : 'justify-center px-2'
+                } ${
+                  isActive
+                    ? 'bg-brand/10 text-brand font-semibold'
+                    : 'text-slate-600 hover:bg-white/50 hover:text-slate-900'
+                }`
+              }
+            >
+              <Sparkles className="w-4 h-4 flex-shrink-0" />
+              {expanded && <span className="whitespace-nowrap">Lanzer AI</span>}
+            </NavLink>
+          </>
+        )}
+
         {/* Bottom section */}
-        <div className="mt-auto border-t border-slate-200 pt-4">
+        <div className="mt-auto border-t border-white/40 pt-4">
           {isAuthenticated ? (
             <>
               {expanded && user && (
@@ -85,7 +109,7 @@ export default function Sidebar() {
           ) : (
             <button
               onClick={() => navigate('/login')}
-              className={`w-full flex items-center py-2.5 rounded-lg text-sm font-medium text-primary-600 hover:bg-primary-50 transition-colors ${
+              className={`w-full flex items-center py-2.5 rounded-lg text-sm font-medium text-brand hover:bg-brand/10 transition-colors ${
                 expanded ? 'gap-3 px-3' : 'justify-center px-2'
               }`}
             >
@@ -96,5 +120,51 @@ export default function Sidebar() {
         </div>
       </aside>
     </div>
+
+      {/* Auth modal */}
+      {showAuthModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={() => setShowAuthModal(false)}
+        >
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div
+            className="relative bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowAuthModal(false)}
+              className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-5 h-5 text-slate-500" />
+            </div>
+
+            <h2 className="text-base font-bold text-slate-900 text-center mb-1">
+              You're not signed in
+            </h2>
+            <p className="text-sm text-slate-500 text-center mb-6 leading-relaxed">
+              Sign in to access Projects, State Map, and other features.
+            </p>
+
+            <button
+              onClick={() => { setShowAuthModal(false); navigate('/login') }}
+              className="w-full py-2.5 rounded-xl bg-brand text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Sign in
+            </button>
+            <button
+              onClick={() => setShowAuthModal(false)}
+              className="w-full py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-slate-700 mt-2 transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   )
 }

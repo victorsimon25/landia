@@ -75,7 +75,7 @@ export default function LandingPage() {
           {FEATURES.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="bg-white rounded-xl border border-slate-200 shadow-sm p-5"
+              className="bg-white/60 backdrop-blur-md rounded-xl border border-white/50 shadow-lg p-5 transition-[border-color,box-shadow,transform] duration-200 hover:bg-white/75 hover:ring-2 hover:ring-brand hover:shadow-xl hover:-translate-y-0.5"
             >
               <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center mb-3">
                 <Icon className="w-5 h-5 text-slate-600" />

@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage.jsx'
 import NationalDashboardPage from './pages/NationalDashboardPage.jsx'
 import ProjectsPage from './pages/ProjectsPage.jsx'
 import MapPage from './pages/MapPage.jsx'
+import LanzerPage from './pages/LanzerPage.jsx'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/map" element={<MapPage />} />
+            <Route path="/lanzer" element={<LanzerPage />} />
           </Route>
         </Route>
 

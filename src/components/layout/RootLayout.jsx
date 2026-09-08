@@ -11,7 +11,7 @@ export default function RootLayout() {
   if (loading) return <LoadingScreen />
 
   return (
-    <div className="h-screen flex flex-col bg-slate-50 overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden">
       {isAuthenticated ? <Navbar /> : <PublicNavbar />}
       <div className="flex flex-1 min-h-0">
         <Sidebar />

@@ -28,7 +28,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="h-14 bg-white border-b border-slate-200 flex items-center px-4 sm:px-6 lg:px-8 flex-shrink-0 z-40 relative">
+    <header className="h-14 bg-white/75 backdrop-blur-xl border-b border-white/60 shadow-sm flex items-center px-4 sm:px-6 lg:px-8 flex-shrink-0 z-40 relative">
       <div className="flex items-center gap-2 flex-1">
         <Logo />
         <span className="text-lg font-bold text-slate-900 tracking-tight">Landia</span>
@@ -38,14 +38,14 @@ export default function Navbar() {
       <div className="relative" ref={ref}>
         <button
           onClick={() => setOpen(!open)}
-          className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-semibold select-none hover:bg-blue-700 transition-colors"
+          className="w-9 h-9 rounded-full bg-brand flex items-center justify-center text-white text-sm font-semibold select-none hover:opacity-85 transition-opacity"
           title={user?.name ?? 'Account'}
         >
           {initial}
         </button>
 
         {open && (
-          <div className="absolute right-0 top-full mt-1.5 w-48 bg-white rounded-xl border border-slate-200 shadow-lg py-1 z-50">
+          <div className="absolute right-0 top-full mt-1.5 w-48 bg-white/90 backdrop-blur-xl rounded-xl border border-white/60 shadow-xl py-1 z-50">
             {user && (
               <div className="px-3 py-2.5 border-b border-slate-100">
                 <p className="text-xs font-semibold text-slate-800 truncate">{user.name}</p>
