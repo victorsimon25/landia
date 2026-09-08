@@ -19,95 +19,15 @@ target/
 *.class
 *.jar
 *.war
-*.ear
-*.nar
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.gradle/
+
+# ============================================================
+# General
+# ============================================================
 build/
-!gradle/wrapper/gradle-wrapper.jar
-
-# ============================================================
-# Python / FastAPI / Scikit-learn
-# ============================================================
-__pycache__/
-*.py[cod]
-*$py.class
-*.pyc
-*.pyo
-.venv/
-venv/
-env/
-ENV/
-.Python
-*.egg-info/
-dist/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
-
-# ============================================================
-# Database
-# ============================================================
-*.sql.bak
-dump.rdb
-*.dump
-
-# ============================================================
-# Environment & Secrets
-# ============================================================
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-secrets.json
-application-secrets.yml
-application-secrets.yaml
-application-local.yml
-application-local.yaml
-
-# ============================================================
-# IDE
-# ============================================================
-.idea/
-*.iml
-*.iws
-*.ipr
-.vscode/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# ============================================================
-# Operating System
-# ============================================================
+coverage/
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-$RECYCLE.BIN/
-
-# ============================================================
-# Logs
-# ============================================================
-logs/
 *.log
-lerna-debug.log*
 
-# ============================================================
-# Docker
-# ============================================================
-.dockerignore
-docker-compose.override.yml
+# Environment files
+.env*
+!.env.example

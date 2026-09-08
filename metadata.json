@@ -1,0 +1,9 @@
+{
+  "name": "NLAMS GIS Spatial Engine",
+  "description": "Pre-acquisition GIS spatial intersection engine for highway corridor alignment and cadastral parcel analysis.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
